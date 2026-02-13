@@ -1,6 +1,6 @@
-# Blender Skills for Claude Code
+# Blender Skills for AI Coding Agents
 
-Expert skills for Blender 5.x Python scripting via Claude Code. Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 7 domains.
+Expert skills for Blender 5.x Python scripting. Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 7 domains.
 
 ## Skills
 
@@ -16,13 +16,21 @@ Expert skills for Blender 5.x Python scripting via Claude Code. Provides complet
 
 ## Install
 
-Add to your Claude Code project:
+### Claude Code
 
 ```bash
-claude mcp add-plugin blender-skills --source /path/to/blender-claude-plugin
+claude plugin add --source /path/to/blender-claude-plugin
 ```
 
-Or reference via marketplace.json for shared setups.
+Or from a git repository:
+
+```bash
+claude plugin add --source https://github.com/ra100/blender-claude-plugin
+```
+
+### Manual
+
+Copy the plugin directory into the agent's plugin search path. The agent needs to read `.claude-plugin/plugin.json` to discover the plugin and `skills/*/SKILL.md` to activate individual skills.
 
 ## Usage
 
@@ -81,7 +89,9 @@ skills/
 
 ## MCP Integration
 
-All skills prefer Blender MCP when available for direct Blender interaction. They fall back to generating Python scripts when MCP is unavailable.
+All skills prefer [Blender MCP](https://github.com/ahujasid/blender-mcp) when available for direct Blender interaction. They fall back to generating Python scripts when MCP is unavailable.
+
+To use with Blender MCP, install and configure the MCP server following the [blender-mcp instructions](https://github.com/ahujasid/blender-mcp). Once connected, the skills will automatically prefer MCP commands over generating standalone scripts.
 
 ## License
 
