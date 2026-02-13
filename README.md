@@ -22,14 +22,14 @@ Add the marketplace and install the plugin:
 
 ```bash
 claude plugin marketplace add ra100/blender-claude-plugin
-claude plugin install blender-skills@ra100/blender-claude-plugin
+claude plugin install blender-skills@blender-claude-marketplace
 ```
 
 Or from a local checkout:
 
 ```bash
 claude plugin marketplace add /path/to/blender-claude-plugin
-claude plugin install blender-skills@blender-claude-plugin
+claude plugin install blender-skills@blender-claude-marketplace
 ```
 
 ### Manual
