@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## What This Is
 
-A skill plugin containing 7 expert skills for Blender 5.x Python scripting. This is a content-only repo — no build system, no tests, no code to run. All files are Markdown and JSON.
+A skill plugin containing 8 expert skills for Blender 5.x Python scripting. This is a content-only repo — no build system, no tests, no code to run. All files are Markdown and JSON.
 
 ## Architecture
 
@@ -29,7 +29,7 @@ Each skill follows the same structure:
 
 2. **references/python_api.md** — Complete Python code templates with correct `bpy` type strings, ready to copy into scripts
 
-3. **Domain-specific reference** — One of: `node_reference.md`, `constraint_reference.md`, `modifier_reference.md`, `physics_reference.md`, or `data_model_reference.md`
+3. **Domain-specific reference** — One of: `node_reference.md`, `constraint_reference.md`, `modifier_reference.md`, `physics_reference.md`, `data_model_reference.md`, or `settings_reference.md`
 
 ### SKILL.md Frontmatter Format
 

@@ -1,6 +1,6 @@
 {
   "name": "blender-skills",
-  "description": "Expert skills for Blender 5.x: geometry nodes, shader nodes, compositing nodes, Python scripting (operators, panels, add-ons), animation & rigging (keyframes, drivers, constraints, armatures), modeling & modifiers (bmesh, modifier stack), and physics simulation (rigid body, cloth, fluid, particles). Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides. Prefers Blender MCP when available.",
+  "description": "Expert skills for Blender 5.x: geometry nodes, shader nodes, compositing nodes, Python scripting (operators, panels, add-ons), animation & rigging (keyframes, drivers, constraints, armatures), modeling & modifiers (bmesh, modifier stack), physics simulation (rigid body, cloth, fluid, particles), and scene & rendering (render engines, output, import/export, color management). Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides. Prefers Blender MCP when available.",
   "version": "1.0.0",
   "author": {
     "name": "svarba"

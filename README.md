@@ -1,6 +1,6 @@
 # Blender Skills for AI Coding Agents
 
-Expert skills for Blender 5.x Python scripting. Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 7 domains.
+Expert skills for Blender 5.x Python scripting. Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 8 domains.
 
 ## Skills
 
@@ -13,6 +13,7 @@ Expert skills for Blender 5.x Python scripting. Provides complete API references
 | **blender-animation-rigging**  | Keyframes, FCurves, drivers, ~45 constraints, armatures, IK/FK, shape keys, NLA editor                       |
 | **blender-modeling-modifiers** | ~50 modifiers, bmesh API, mesh operators, hard surface/retopology/boolean workflows, sculpt setup            |
 | **blender-physics-simulation** | Rigid body, cloth, fluid (Mantaflow smoke/fire/liquid), soft body, particles, force fields, baking           |
+| **blender-scene-rendering**   | Render engines (Cycles/EEVEE), output formats, sampling, color management, import/export, linking/appending  |
 
 ## Install
 
@@ -47,6 +48,8 @@ The skills activate automatically based on your prompt. Ask Claude to:
 - Rig a character with IK/FK switching
 - Add a subdivision + bevel + mirror modifier stack
 - Simulate cloth falling onto rigid bodies
+- Configure Cycles GPU rendering with denoising
+- Export a character as glTF with animations
 
 Each skill includes a task decision tree, common recipes, debugging guides, and full Python API references with correct type strings.
 
@@ -84,10 +87,15 @@ skills/
 │   └── references/
 │       ├── modifier_reference.md
 │       └── python_api.md
-└── blender-physics-simulation/
+├── blender-physics-simulation/
+│   ├── SKILL.md
+│   └── references/
+│       ├── physics_reference.md
+│       └── python_api.md
+└── blender-scene-rendering/
     ├── SKILL.md
     └── references/
-        ├── physics_reference.md
+        ├── settings_reference.md
         └── python_api.md
 ```
 
