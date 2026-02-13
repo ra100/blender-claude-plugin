@@ -7,7 +7,7 @@
     {
       "name": "blender-skills",
       "description": "Expert skills for Blender 5.x — geometry nodes, shader nodes, compositing nodes, Python scripting, animation & rigging, modeling & modifiers, and physics simulation. Complete API references, node/modifier/constraint catalogs, recipes, and debugging guides.",
-      "source": "."
+      "source": "./"
     }
   ]
 }
