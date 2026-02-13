@@ -11,7 +11,7 @@ A skill plugin containing 7 expert skills for Blender 5.x Python scripting. This
 This is a **skill plugin**. The plugin system works as follows:
 
 - `.claude-plugin/plugin.json` — Plugin metadata (name, description, version). This is what the host agent reads to discover the plugin.
-- `marketplace.json` — Marketplace listing for shared discovery.
+- `.claude-plugin/marketplace.json` — Marketplace listing for shared discovery.
 - `skills/<skill-name>/SKILL.md` — The main skill file. Must have YAML frontmatter with `name` and `description` fields. The `description` is used to decide when to activate the skill.
 - `skills/<skill-name>/references/*.md` — Supporting reference files that SKILL.md points to. These are read on-demand when the skill is active.
 

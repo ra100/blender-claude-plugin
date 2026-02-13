@@ -18,14 +18,18 @@ Expert skills for Blender 5.x Python scripting. Provides complete API references
 
 ### Claude Code
 
+Add the marketplace and install the plugin:
+
 ```bash
-claude plugin add --source /path/to/blender-claude-plugin
+claude plugin marketplace add ra100/blender-claude-plugin
+claude plugin install blender-skills@ra100/blender-claude-plugin
 ```
 
-Or from a git repository:
+Or from a local checkout:
 
 ```bash
-claude plugin add --source https://github.com/ra100/blender-claude-plugin
+claude plugin marketplace add /path/to/blender-claude-plugin
+claude plugin install blender-skills@blender-claude-plugin
 ```
 
 ### Manual
