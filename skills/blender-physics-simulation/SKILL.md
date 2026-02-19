@@ -1,6 +1,6 @@
 ---
 name: blender-physics-simulation
-description: This skill should be used when working with Blender physics simulations — rigid body, cloth, fluid (Mantaflow), soft body, particles, force fields, baking, and caching. It applies when setting up rigid body dynamics, cloth simulation, fluid/smoke/fire simulations, particle systems (emitter or hair), force fields, collision objects, simulation baking/caching, or scripting physics via Python (bpy) in Blender 5.x. Triggers on "rigid body", "cloth simulation", "fluid simulation", "smoke", "fire", "soft body", "particle system", "force field", "collision", "bake simulation", "cache", "Mantaflow", "physics", or any Blender simulation workflow. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x physics simulations — rigid body, cloth, fluid/smoke/fire (Mantaflow), soft body, particles, force fields, collisions, and simulation baking/caching via Python (bpy).
 ---
 
 # Blender Physics & Simulation Expert

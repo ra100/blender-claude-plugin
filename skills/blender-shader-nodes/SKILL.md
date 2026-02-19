@@ -1,6 +1,6 @@
 ---
 name: blender-shader-nodes
-description: This skill should be used when working with Blender shader nodes for material creation, texturing, lighting setups, and render troubleshooting. It applies when creating PBR materials, procedural textures, glass/metal/skin shaders, world/environment lighting, or scripting material node trees via Python (bpy) in Blender 5.x. Triggers on "shader nodes", "material setup", "PBR material", "Principled BSDF", "procedural texture", "HDRI lighting", "Cycles material", "EEVEE material", or any Blender shading workflow. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x shader nodes — PBR materials, procedural textures, Principled BSDF, glass/metal/skin shaders, world/HDRI lighting, and scripting material node trees via Python (bpy).
 ---
 
 # Blender Shader Nodes Expert

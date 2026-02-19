@@ -1,6 +1,6 @@
 ---
 name: blender-python-scripting
-description: This skill should be used when working with Blender Python scripting (bpy) for custom operators, UI panels, add-on development, context management, handlers, property system, batch processing, or general Blender automation. It applies when creating custom tools, writing add-ons, managing scene data, batch-processing files, registering operators/menus/panels, working with Blender's property system, or scripting any Blender workflow via Python in Blender 5.x. Triggers on "bpy script", "Blender Python", "custom operator", "Blender add-on", "UI panel", "Blender automation", "batch render", "context override", "handler", "property group", or any Blender Python API task. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x Python scripting (bpy) — custom operators, UI panels, add-on development, context management, handlers, timers, property system, batch processing, and data model access.
 ---
 
 # Blender Python Scripting Expert
@@ -142,6 +142,7 @@ bpy.ops.object.mode_set(mode='OBJECT')
 3. **Active object is None**: Always check `context.active_object is not None` before operations.
 4. **Wrong mode**: Object-mode operators fail in edit mode and vice versa. Check `context.object.mode`.
 5. **Depsgraph not updated**: After modifying data, call `bpy.context.view_layer.update()` or `depsgraph.update()` if needed.
+6. **`display_type` values depend on object type**: `'PLAIN_AXES'` is only valid for Empties. Mesh objects use `'BOUNDS'`, `'WIRE'`, `'SOLID'`, or `'TEXTURED'`.
 
 ## Batch Processing
 

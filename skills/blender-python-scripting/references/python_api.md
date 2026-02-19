@@ -647,7 +647,7 @@ scene.render.image_settings.file_format = 'PNG'  # PNG, JPEG, OPEN_EXR, FFMPEG, 
 scene.render.filepath = "/tmp/render_"
 
 # Render engine
-scene.render.engine = 'CYCLES'  # CYCLES, BLENDER_EEVEE_NEXT, BLENDER_WORKBENCH
+scene.render.engine = 'CYCLES'  # CYCLES, BLENDER_EEVEE, BLENDER_WORKBENCH
 
 # Cycles settings
 scene.cycles.samples = 128

@@ -228,3 +228,97 @@ reroute.location = (100, -200)
 links.new(some_output, reroute.inputs[0])
 links.new(reroute.outputs[0], some_input)
 ```
+
+## Simulation Zone Setup
+
+### Creating Simulation Input/Output Nodes
+
+```python
+# Create simulation zone
+sim_input = nodes.new(type='GeometryNodeSimulationInput')
+sim_output = nodes.new(type='GeometryNodeSimulationOutput')
+sim_input.pair_with_output(sim_output)
+
+# Add state items (the data that persists across frames)
+# IMPORTANT: Use 'VECTOR' not 'FLOAT_VECTOR' for vector state items
+sim_output.state_items.new('GEOMETRY', "Geometry")
+sim_output.state_items.new('VECTOR', "Velocity")
+sim_output.state_items.new('FLOAT', "Age")
+
+# Connect sim zone to the rest of the tree
+links.new(group_input.outputs['Geometry'], sim_input.inputs['Geometry'])
+links.new(sim_output.outputs['Geometry'], group_output.inputs['Geometry'])
+```
+
+### Pass-Through Pattern for Group Input Values
+
+Group Input values don't propagate inside Simulation Zones — nodes inside receive the interface default, not the modifier override. Pass values as state items:
+
+```python
+# Add a float state item to carry the Group Input value into the sim zone
+sim_output.state_items.new('FLOAT', "Speed")
+
+# Outside sim zone: connect Group Input 'Speed' to sim_input 'Speed'
+links.new(group_input.outputs['Speed'], sim_input.inputs['Speed'])
+
+# Inside sim zone: read from sim_input's 'Speed' output, not Group Input
+links.new(sim_input.outputs['Speed'], some_math_node.inputs[0])
+
+# At sim zone boundary: pass value through to sim_output
+links.new(sim_input.outputs['Speed'], sim_output.inputs['Speed'])
+```
+
+## ShaderNodeMix Socket Indices by data_type
+
+The `ShaderNodeMix` node changes which sockets are active depending on `data_type`. Use index-based access:
+
+| data_type    | A (Factor/Input 1) | B (Input 2) | Result |
+| ------------ | ------------------- | ----------- | ------ |
+| `'FLOAT'`    | index 2             | index 3     | index 0 |
+| `'VECTOR'`   | index 4             | index 5     | index 1 |
+| `'RGBA'`     | index 6             | index 7     | index 2 |
+| `'ROTATION'` | index 8             | index 9     | index 3 |
+
+```python
+mix = nodes.new(type='ShaderNodeMix')
+mix.data_type = 'VECTOR'
+# Factor is always inputs[0]
+links.new(some_float.outputs[0], mix.inputs[0])       # Factor
+links.new(vector_a.outputs[0], mix.inputs[4])          # A (Vector)
+links.new(vector_b.outputs[0], mix.inputs[5])          # B (Vector)
+links.new(mix.outputs[1], set_position.inputs['Offset'])  # Result (Vector)
+```
+
+## ShaderNodeMath Gotchas
+
+- **No `GREATER_EQUAL` operation** — use `GREATER_THAN` with a slightly adjusted threshold (e.g., `threshold - 0.0001`), or chain `GREATER_THAN` and `COMPARE` with Boolean Math OR.
+
+```python
+math = nodes.new(type='ShaderNodeMath')
+math.operation = 'GREATER_THAN'  # No GREATER_EQUAL available
+```
+
+## Vector Math SCALE Socket Index
+
+When using `ShaderNodeVectorMath` with operation `'SCALE'`, the scalar float input is at **socket index 3**, not index 1:
+
+```python
+vec_math = nodes.new(type='ShaderNodeVectorMath')
+vec_math.operation = 'SCALE'
+links.new(vector_source.outputs[0], vec_math.inputs[0])  # Vector input
+links.new(float_source.outputs[0], vec_math.inputs[3])    # Scale (float) — NOT index 1
+```
+
+## Node Link Removal
+
+Removing a link invalidates Python references to other links. Always iterate over a **copy** of the links list:
+
+```python
+# WRONG — will skip links or crash:
+# for link in ng.links:
+#     ng.links.remove(link)
+
+# CORRECT — iterate over a snapshot:
+for link in list(ng.links):
+    ng.links.remove(link)
+```

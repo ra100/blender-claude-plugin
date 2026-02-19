@@ -1,6 +1,6 @@
 ---
 name: blender-compositing-nodes
-description: This skill should be used when working with Blender compositor nodes for post-processing, color grading, denoising, keying, glare, depth of field, lens distortion, render pass separation, multi-layer EXR output, and compositing workflows. It applies when setting up compositor node trees, scripting compositing pipelines via Python (bpy), combining render passes, or building post-processing effects in Blender 5.x. Triggers on "compositor nodes", "compositing", "post-processing", "color grading", "denoise", "keying", "green screen", "glare", "depth of field", "render passes", "File Output", "multi-layer EXR", or any Blender compositing workflow. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x compositor nodes — post-processing, color grading, denoising, keying, glare, depth of field, render pass separation, multi-layer EXR output, and scripting compositing pipelines via Python (bpy).
 ---
 
 # Blender Compositing Nodes Expert

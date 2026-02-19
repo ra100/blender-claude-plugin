@@ -439,7 +439,7 @@ scene.render.fps
 scene.render.fps_base
 
 # Render settings
-scene.render.engine           # 'CYCLES', 'BLENDER_EEVEE_NEXT', 'BLENDER_WORKBENCH'
+scene.render.engine           # 'CYCLES', 'BLENDER_EEVEE', 'BLENDER_WORKBENCH'
 scene.render.resolution_x
 scene.render.resolution_y
 scene.render.resolution_percentage

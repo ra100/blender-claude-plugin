@@ -76,14 +76,16 @@ con.keyframe_insert(data_path="influence", frame=30)
 
 ## FCurve Manipulation
 
-### Accessing FCurves
+### Accessing FCurves (Legacy API — pre-4.x)
+
+The `action.fcurves` shortcut works for pre-4.x actions:
 
 ```python
 # Get animation data
 anim_data = obj.animation_data
 action = anim_data.action
 
-# Iterate all FCurves
+# Iterate all FCurves (legacy/pre-4.x API)
 for fcurve in action.fcurves:
     print(f"Path: {fcurve.data_path}, Index: {fcurve.array_index}")
     print(f"  Points: {len(fcurve.keyframe_points)}")
@@ -92,6 +94,41 @@ for fcurve in action.fcurves:
 fc = action.fcurves.find("location", index=0)  # X location
 if fc:
     print(f"X Location has {len(fc.keyframe_points)} keyframes")
+```
+
+### Accessing FCurves (Layered Actions — Blender 4.x+/5.x)
+
+Blender 4.x+ uses **layered actions** with a deeper hierarchy: `action.layers[].strips[].channelbags[].fcurves`. Action **slots** bind actions to specific objects — copying actions between objects requires slot rebinding.
+
+```python
+# Get animation data
+anim_data = obj.animation_data
+action = anim_data.action
+
+# Layered action FCurve access (Blender 4.x+/5.x)
+for layer in action.layers:
+    for strip in layer.strips:
+        for channelbag in strip.channelbags:
+            for fcurve in channelbag.fcurves:
+                print(f"Path: {fcurve.data_path}, Index: {fcurve.array_index}")
+
+# Helper to get all FCurves from a layered action
+def get_all_fcurves(action):
+    """Get all FCurves from a layered action (Blender 4.x+/5.x)."""
+    fcurves = []
+    for layer in action.layers:
+        for strip in layer.strips:
+            for channelbag in strip.channelbags:
+                fcurves.extend(channelbag.fcurves)
+    return fcurves
+
+# Copying actions between objects requires slot rebinding
+# Each slot is bound to a specific object — after copying, rebind:
+new_action = action.copy()
+target_obj.animation_data.action = new_action
+# Find the slot for the original object and reassign
+for slot in new_action.slots:
+    slot.handle = target_obj  # Rebind slot to the new target
 ```
 
 ### Modifying Keyframe Points

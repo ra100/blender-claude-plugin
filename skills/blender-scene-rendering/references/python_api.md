@@ -11,7 +11,7 @@ scene = bpy.context.scene
 render = scene.render
 
 # Engine
-render.engine = 'CYCLES'  # CYCLES, BLENDER_EEVEE_NEXT, BLENDER_WORKBENCH
+render.engine = 'CYCLES'  # CYCLES, BLENDER_EEVEE, BLENDER_WORKBENCH
 
 # Resolution
 render.resolution_x = 1920

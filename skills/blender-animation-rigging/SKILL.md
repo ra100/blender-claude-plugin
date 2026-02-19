@@ -1,6 +1,6 @@
 ---
 name: blender-animation-rigging
-description: This skill should be used when working with Blender animation and rigging — keyframes, FCurves, drivers, constraints, armatures, IK chains, shape keys, NLA editor, and animation scripting via Python (bpy). It applies when creating keyframe animations, building rigs, setting up IK/FK, working with drivers and expressions, using the NLA editor, manipulating shape keys, or scripting any animation workflow in Blender 5.x. Triggers on "keyframe", "animation", "FCurve", "driver", "constraint", "armature", "rig", "IK", "inverse kinematics", "shape key", "blend shape", "NLA", "action", "bone", or any Blender animation/rigging task. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x animation and rigging — keyframes, FCurves, layered actions, drivers, constraints, armatures, IK/FK, shape keys, NLA editor, and bone collections via Python (bpy).
 ---
 
 # Blender Animation & Rigging Expert

@@ -5,7 +5,7 @@
 | Engine               | Type String              | Description                         |
 | -------------------- | ------------------------ | ----------------------------------- |
 | Cycles               | `'CYCLES'`               | Path tracer, production quality     |
-| EEVEE Next           | `'BLENDER_EEVEE_NEXT'`   | Real-time, ray tracing support      |
+| EEVEE                | `'BLENDER_EEVEE'`        | Real-time, ray tracing support      |
 | Workbench            | `'BLENDER_WORKBENCH'`    | Solid/preview, technical drawing    |
 
 ## Cycles Device Types

@@ -1,6 +1,6 @@
 ---
 name: blender-modeling-modifiers
-description: This skill should be used when working with Blender modifiers, bmesh API, mesh editing operators, sculpting setup, and modeling workflows. It applies when adding/configuring modifiers (Subdivision Surface, Boolean, Array, Mirror, Bevel, etc.), using bmesh for procedural mesh creation/editing, running mesh operators, setting up sculpt mode, or scripting modeling pipelines via Python (bpy) in Blender 5.x. Triggers on "modifier", "subdivision", "boolean", "array", "mirror", "bevel", "bmesh", "mesh editing", "sculpt", "retopology", "hard surface", "decimate", "remesh", or any Blender modeling workflow. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x modifiers, bmesh API, mesh editing operators, sculpting setup — SubSurf, Boolean, Array, Mirror, Bevel, bmesh procedural mesh creation, and modeling pipelines via Python (bpy).
 ---
 
 # Blender Modeling & Modifiers Expert

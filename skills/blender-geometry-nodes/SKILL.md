@@ -1,6 +1,6 @@
 ---
 name: blender-geometry-nodes
-description: This skill should be used when working with Blender geometry nodes for procedural modeling, scattering, mesh operations, curve operations, volume manipulation, and node tree debugging/optimization. It applies when creating geometry node setups, scripting node trees via Python (bpy), troubleshooting slow or broken node trees, or designing procedural systems in Blender 5.x. Triggers on "geometry nodes", "procedural modeling in Blender", "scatter system", "node tree", "distribute points", "extrude mesh nodes", or any Blender geometry node workflow. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x geometry nodes — procedural modeling, scattering, mesh/curve/volume ops, simulation zones, repeat zones, and scripting node trees via Python (bpy).
 ---
 
 # Blender Geometry Nodes Expert
@@ -89,6 +89,21 @@ NodeSocketRotation, NodeSocketMatrix, NodeSocketMenu
 1. Simulation Input -> processing nodes -> Simulation Output
 2. State persists across frames
 3. Use Scene Time or frame delta for time-dependent behavior
+
+### Simulation Zone Gotchas
+
+**Critical**: These are hard-won learnings from real projects. Violating them produces subtle bugs.
+
+- **Group Input values don't propagate inside Simulation Zones** — nodes inside the sim zone receive the interface *default* value, not the modifier override. **Workaround**: pass values through as state items on the simulation zone.
+- **Object Info works inside Sim Zones** — but only when the object reference is set directly on the node socket (not via Group Input). Set `transform_space = 'ORIGINAL'`.
+- **Scene Time works inside Sim Zones** — use for frame-based activation logic (e.g., start effect on frame N).
+- **Sim zone geometry freezes after frame 1** — Named Attributes on incoming geometry don't update on subsequent frames. Only state items carry forward.
+- **Set Position required after Sim Zone** — position state items track values but don't move vertices. Feed the tracked positions into a Set Position node after the sim zone output.
+- **Instance Scale on Collection Info always returns (1,1,1)** — use a separate modifier on the source objects to write scale as a named attribute instead.
+- **Empties produce no geometry after Realize Instances** — use single-vertex mesh objects as lightweight proxy objects instead of empties.
+- **Capture Attribute anonymous attributes don't survive Realize Instances** — use Store Named Attribute with explicit string names instead.
+- **Visibility control** — use Delete Geometry to output empty geometry for hiding. Don't rely on `hide_viewport`/`hide_render` from within geometry nodes.
+- **`to_mesh()` cannot realize instances** — Instance on Points output returns 0 verts from `obj.to_mesh()`. Use `evaluated_get(depsgraph)` with `realize_instances=True` on the depsgraph, or add a Realize Instances node in the tree.
 
 ### For Each Element Zone (Per-Element Processing)
 1. For Each Element Input -> processing -> For Each Element Output

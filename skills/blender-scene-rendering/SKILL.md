@@ -1,6 +1,6 @@
 ---
 name: blender-scene-rendering
-description: This skill should be used when working with Blender scene setup, render configuration, output settings, file I/O, import/export, linking/appending, viewport configuration, color management, and project-level settings. It applies when configuring render engines (Cycles, EEVEE), setting resolution/samples/output format, managing scenes and view layers, importing/exporting files (FBX, glTF, OBJ, USD, Alembic), linking or appending data, configuring color management (Filmic, AgX), setting up world/environment, or scripting project setup via Python (bpy) in Blender 5.x. Triggers on "render settings", "output format", "resolution", "samples", "Cycles", "EEVEE", "import", "export", "FBX", "glTF", "OBJ", "USD", "Alembic", "link", "append", "asset browser", "color management", "Filmic", "AgX", "scene setup", "view layer", "world settings", "frame range", "units", "viewport", "workspace", or any Blender project/render configuration task. If a Blender MCP server is available, prefer using that for direct Blender interaction.
+description: Blender 5.x scene setup, render engines (Cycles/EEVEE), output formats, import/export (FBX/glTF/OBJ/USD/Alembic), linking/appending, color management (AgX/Filmic), view layers, viewport config, and world/environment setup via Python (bpy).
 ---
 
 # Blender Scene & Rendering Expert
@@ -58,7 +58,7 @@ for device in prefs.devices:
 import bpy
 
 scene = bpy.context.scene
-scene.render.engine = 'BLENDER_EEVEE_NEXT'  # Blender 4.x+/5.x EEVEE Next
+scene.render.engine = 'BLENDER_EEVEE'  # Blender 4.x+/5.x EEVEE
 
 eevee = scene.eevee
 
@@ -66,11 +66,14 @@ eevee = scene.eevee
 eevee.shadow_ray_count = 1
 eevee.shadow_step_count = 6
 
-# Ray tracing (EEVEE Next)
+# Ray tracing
 eevee.use_raytracing = True
 eevee.ray_tracing_method = 'SCREEN'  # SCREEN or FULL
 
-# Ambient Occlusion (baked into lighting in EEVEE Next)
+# Emission transparency (for emissive materials that need alpha blending)
+# Set per-material: material.surface_render_method = 'BLENDED'
+
+# Ambient Occlusion (baked into lighting in EEVEE)
 ```
 
 ### Workbench (Solid/Preview)
