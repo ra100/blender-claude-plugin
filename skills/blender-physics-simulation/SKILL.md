@@ -558,3 +558,7 @@ For the complete catalog of all physics types with property listings and configu
 ## Python API Reference
 
 For complete Python API patterns including rigid body, cloth, fluid, particle, and force field setup, consult `references/python_api.md`.
+
+## Blender 5.1 Notes
+
+No major physics API changes in Blender 5.1. The existing physics simulation APIs (rigid body, cloth, fluid, soft body, particles) remain unchanged. Minor stability improvements and bug fixes apply across all physics systems. See the general Python 3.13 notes in the blender-python-scripting skill for scripting environment changes.

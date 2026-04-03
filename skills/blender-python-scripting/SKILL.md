@@ -1,6 +1,6 @@
 ---
 name: blender-python-scripting
-description: Blender 5.x Python scripting (bpy) — custom operators, UI panels, add-on development, context management, handlers, timers, property system, batch processing, and data model access.
+description: Blender 5.x Python scripting (bpy) — custom operators, UI panels, add-on development, context management, handlers, timers, property system, batch processing, and data model access. Now targets Python 3.13 (Blender 5.1).
 ---
 
 # Blender Python Scripting Expert
@@ -26,6 +26,21 @@ To check for Blender MCP availability, search available tools for "blender" at t
 - **"Run code on frame change / file load"** -> See Handler patterns in `references/python_api.md`
 - **"Context errors / poll failures"** -> See Context Management below
 
+## Blender 5.1 Python Changes
+
+### Python 3.13 Upgrade
+1. Blender 5.1 bundles **Python 3.13** (up from 3.12 in 5.0)
+2. Update `bl_info["blender"]` to `(5, 1, 0)` for version gating in add-ons
+3. Use type hint syntax (`int | None` instead of `Optional[int]`) — now fully supported
+4. Performance improvements in CPython 3.13: faster function calls, better GC
+
+### Removed Operators
+1. `bpy.ops.anim.convert_legacy_action` — removed; layered actions handle this automatically
+
+### API Additions
+1. `bpy.ops.pose.apply_to_basis()` — bake current pose as rest pose
+2. Node socket types: `NodeSocketFont` for font data
+3. Volume grid node types for geometry nodes (see blender-geometry-nodes skill)
 ## Add-on Structure
 
 A proper Blender add-on follows this layout:

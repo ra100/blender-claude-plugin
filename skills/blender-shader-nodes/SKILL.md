@@ -1,13 +1,13 @@
 ---
 name: blender-shader-nodes
-description: Blender 5.x shader nodes — PBR materials, procedural textures, Principled BSDF, glass/metal/skin shaders, world/HDRI lighting, and scripting material node trees via Python (bpy).
+description: Blender 5.x shader nodes — PBR materials, procedural textures, Principled BSDF, glass/metal/skin shaders, world/HDRI lighting, raycast shader node, and scripting material node trees via Python (bpy). Includes 5.1 changes (Normal Map OpenGL/DirectX, Raycast, OpenColorIO 2.5).
 ---
 
 # Blender Shader Nodes Expert
 
 ## Overview
 
-This skill provides expert guidance for Blender 5.x shader nodes: designing material setups, writing Python scripts to build shader node trees programmatically, understanding render engine differences (Cycles vs EEVEE), and accessing the complete shader node catalog. The reference files contain the full node listing and Python API patterns.
+This skill provides expert guidance for Blender 5.x shader nodes: designing material setups, writing Python scripts to build shader node trees programmatically, understanding render engine differences (Cycles vs EEVEE), and accessing the complete shader node catalog. Includes 5.0 and 5.1 changes (Raycast node, Normal Map OpenGL/DirectX toggle, OpenColorIO 2.5).
 
 ## MCP-First Approach
 
@@ -93,7 +93,20 @@ When creating materials via Python:
 ### Displacement
 1. Texture -> Displacement node -> Material Output (Displacement socket)
 2. Set material displacement method: `mat.cycles.displacement_method = 'BOTH'`
-3. Requires subdivision on the mesh (Subdivision Surface modifier or Adaptive Subdivision in Cycles)
+96#HB|3. Requires subdivision on the mesh (Subdivision Surface modifier or Adaptive Subdivision in Cycles)
+
+### Raycast Node (Blender 5.1)
+1. **ShaderNodeRaycast** casts a ray from the shading point and returns hit information
+2. Outputs: **Position**, **Normal**, **Distance**, **Object**, **Is Hit**
+3. Useful for material-driven proximity effects, occlusion, and intersection detection
+4. Supports specifying ray direction and length limits
+5. Works in both Cycles and EEVEE
+
+### Normal Map Improvements (Blender 5.1)
+1. New **OpenGL/DirectX** toggle for normal map tangent space convention
+2. OpenGL (default) vs DirectX flip — fix inverted normal maps from game engines
+3. New option to compute normal maps on the **displaced mesh** (Cycles only)
+4. Use `normal_map_node.invert_y` or `normal_map_node.tangent_space_convention` to toggle
 
 ### Volume (Fog/Smoke)
 1. Principled Volume -> Material Output (Volume socket)
@@ -142,6 +155,8 @@ Key sections to search:
 - Principled BSDF inputs: grep for "Principled BSDF - Detailed"
 - Render engine compatibility: grep for "Cycles Only" or "EEVEE"
 - Blender 5.0 changes: grep for "5.0"
+- Blender 5.1 changes: grep for "5.1" or "Raycast" or "Normal Map"
+- OpenColorIO 2.5: Updated color management with improved display transforms
 
 ## Python API Reference
 

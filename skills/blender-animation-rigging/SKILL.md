@@ -1,13 +1,13 @@
 ---
 name: blender-animation-rigging
-description: Blender 5.x animation and rigging — keyframes, FCurves, layered actions, drivers, constraints, armatures, IK/FK, shape keys, NLA editor, and bone collections via Python (bpy).
+description: Blender 5.x animation and rigging — keyframes, FCurves, layered actions, drivers, constraints, armatures, IK/FK, shape keys, NLA editor, and bone collections via Python (bpy). Includes 5.1 changes (Smooth Gaussian FCurve modifier, Apply to Basis, layered action performance).
 ---
 
 # Blender Animation & Rigging Expert
 
 ## Overview
 
-This skill provides expert guidance for Blender 5.x animation and rigging: keyframing, FCurve editing, drivers, bone constraints, armature creation, IK/FK chains, shape keys, NLA strips, and Python automation of animation workflows. The reference files contain the complete constraint catalog and Python API patterns.
+This skill provides expert guidance for Blender 5.x animation and rigging: keyframing, FCurve editing, drivers, bone constraints, armature creation, IK/FK chains, shape keys, NLA strips, and Python automation of animation workflows. Includes 5.1 changes (Smooth Gaussian FCurve modifier, Apply to Basis, layered action performance). The reference files contain the complete constraint catalog and Python API patterns.
 
 ## MCP-First Approach
 
@@ -27,6 +27,28 @@ To check for Blender MCP availability, search available tools for "blender" at t
 - **"Edit FCurves"** -> See FCurve Manipulation in `references/python_api.md`
 - **"Bone rolls/orientations are wrong"** -> See Mode Switching Gotchas
 
+## Blender 5.1 Changes
+
+### Smooth (Gaussian) FCurve Modifier (New in 5.1)
+1. New FCurve modifier type: `'SMOOTH'` with blend mode `'GAUSSIAN'`
+2. Provides smoother interpolation than the legacy Smooth modifier
+3. Apply via Python: `fcurve.modifiers.new('Smooth', 'SMOOTH')` then set blend type
+4. Useful for reducing jitter in motion capture data
+
+### Apply to Basis (New in 5.1)
+1. Operator to apply the current pose as the new rest pose (bake pose to rest)
+2. Python: `bpy.ops.pose.apply_to_basis()`
+3. Useful for fixing bone orientations after rigging
+
+### Layered Actions Performance (5.1)
+1. Significant performance improvements for layered (non-destructive) animation
+2. Reduced evaluation overhead for complex NLA/layer setups
+3. Better viewport playback with layered animation active
+
+### ANIM_OT_convert_legacy_action Removed (5.1)
+1. The `bpy.ops.anim.convert_legacy_action` operator has been removed
+2. Legacy single-strip NLA actions are now automatically handled by the layered action system
+3. Update any scripts that referenced this operator
 ## Keyframe Patterns
 
 ### Basic Keyframing

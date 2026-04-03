@@ -1,19 +1,19 @@
 # Blender Skills for AI Coding Agents
 
-Expert skills for Blender 5.x Python scripting. Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 8 domains.
+Expert skills for Blender 5.x Python scripting (targeting 5.0 and 5.1). Provides complete API references, node/modifier/constraint catalogs, recipes, and debugging guides across 8 domains.
 
 ## Skills
 
 | Skill                          | Description                                                                                                  |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| **blender-geometry-nodes**     | ~373 geometry nodes, procedural modeling patterns, scatter/deformation/simulation zones                      |
-| **blender-shader-nodes**       | ~95 shader nodes, PBR/procedural/glass/metal material recipes, Cycles vs EEVEE                               |
-| **blender-compositing-nodes**  | ~70-80 compositor nodes, denoise/color grading/keying/glare/DOF recipes, multi-layer EXR output              |
-| **blender-python-scripting**   | Operators, panels, add-on structure, handlers, timers, property system, context management, batch processing |
-| **blender-animation-rigging**  | Keyframes, FCurves, drivers, ~45 constraints, armatures, IK/FK, shape keys, NLA editor                       |
-| **blender-modeling-modifiers** | ~50 modifiers, bmesh API, mesh operators, hard surface/retopology/boolean workflows, sculpt setup            |
-| **blender-physics-simulation** | Rigid body, cloth, fluid (Mantaflow smoke/fire/liquid), soft body, particles, force fields, baking           |
-| **blender-scene-rendering**   | Render engines (Cycles/EEVEE), output formats, sampling, color management, import/export, linking/appending  |
+| **blender-geometry-nodes**     | ~373 geometry nodes, procedural modeling, Bone Info node, String to Curves fields, volume grid nodes, SVD       |
+| **blender-shader-nodes**       | ~95 shader nodes, PBR/procedural/glass/metal recipes, Raycast node, Normal Map OpenGL/DirectX (5.1)            |
+| **blender-compositing-nodes**  | ~80 compositor nodes, denoise/color grading/keying, Sequencer Strip Info, Mask to SDF (5.1)                    |
+| **blender-python-scripting**   | Operators, panels, add-ons, handlers, timers, property system, Python 3.13 (5.1)                               |
+| **blender-animation-rigging**  | Keyframes, FCurves, Smooth Gaussian modifier (5.1), Apply to Basis, drivers, ~45 constraints, IK/FK, NLA        |
+| **blender-modeling-modifiers** | ~50 modifiers, bmesh API, boolean speedups (5.1), Corrective Flip Normals, hard surface/retopo workflows       |
+| **blender-physics-simulation** | Rigid body, cloth, fluid (Mantaflow), soft body, particles, force fields, baking                                |
+| **blender-scene-rendering**   | Cycles/EEVEE, AVIF output (5.1), HTJ2K EXR, OpenColorIO 2.5, color management, import/export, linking          |
 
 ## Install
 
@@ -98,6 +98,26 @@ skills/
         ├── settings_reference.md
         └── python_api.md
 ```
+
+## Changelog
+
+### v1.2.0 — Blender 5.1 Updates
+
+- **Geometry Nodes**: Bone Info node, String to Curves field inputs + Word output, volume grid nodes (Cube Grid, Clip Grid, Grid Mean/Median, Grid to Points, Grid Dilate/Erode), UV Unwrap Minimum Stretch (SLIM), Pack UV Islands custom region, Matrix SVD node, Get/Store Bundle Item nodes, Font socket type, node warning search (Ctrl+F), node tools as operators
+- **Shader Nodes**: Raycast shader node, Normal Map OpenGL/DirectX toggle, Normal Map on displaced mesh (Cycles)
+- **Compositing Nodes**: Sequencer Strip Info node, Mask to SDF node, Mix node alpha performance (up to 2x)
+- **Animation & Rigging**: Smooth (Gaussian) FCurve modifier, Apply to Basis operator, layered actions performance improvements, removed `ANIM_OT_convert_legacy_action`
+- **Python Scripting**: Python 3.13 upgrade, type hint syntax fully supported, removed operators documented
+- **Modeling & Modifiers**: Boolean modifier speed improvements, Corrective Flip Normals operator, snap to face center, loop selection delimiter improvements
+- **Scene & Rendering**: AVIF output format, OpenEXR HTJ2K codec, video custom CRF, OpenColorIO 2.5, Light Path in World node trees, Cycles/EEVEE performance improvements
+- **Physics**: No major API changes in 5.1
+
+### v1.1.0 — Initial Release
+
+- 8 expert skills covering all major Blender domains
+- Targets Blender 5.0
+- Complete node/modifier/constraint catalogs with Python type strings
+- MCP-first approach with Python script fallback
 
 ## MCP Integration
 

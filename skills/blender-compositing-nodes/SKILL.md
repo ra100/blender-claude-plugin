@@ -1,6 +1,6 @@
 ---
 name: blender-compositing-nodes
-description: Blender 5.x compositor nodes — post-processing, color grading, denoising, keying, glare, depth of field, render pass separation, multi-layer EXR output, and scripting compositing pipelines via Python (bpy).
+description: Blender 5.x compositor nodes — post-processing, color grading, denoising, keying, glare, depth of field, render pass separation, multi-layer EXR output, and scripting compositing pipelines via Python (bpy). Includes 5.1 changes (Sequencer Strip Info, Mask to SDF, Mix node alpha improvements).
 ---
 
 # Blender Compositing Nodes Expert
@@ -125,6 +125,17 @@ When creating compositor setups via Python:
 4. Each input becomes a layer in the EXR
 5. For separate files: use File Output with per-socket file paths
 
+### Sequencer Strip Info (Blender 5.1)
+1. **CompositorNodeStripInfo** outputs timing metadata from VSE strips (new in 5.1)
+2. Outputs: **Frame**, **Strip Start**, **Strip End**, **Strip Duration**, **Speed Factor**
+3. Useful for driving compositor effects based on clip timing
+4. Requires an active sequencer strip in the scene
+
+### Mask to SDF (Blender 5.1)
+1. **CompositorNodeMaskToSDF** converts a binary mask to a signed distance field (new in 5.1)
+2. Outputs: **SDF** (signed distance values, negative inside, positive outside)
+3. Useful for creating smooth edges on masks, variable-width outlines, and glow effects
+4. Combine with Math nodes to threshold or adjust the SDF width
 ### Fog/Mist
 
 1. Enable Mist pass: `view_layer.use_pass_mist = True`
@@ -156,6 +167,7 @@ When creating compositor setups via Python:
 3. Use lower quality settings during iteration, switch to High for final render
 4. For animation, prefer render-level denoising over compositor denoising (faster)
 5. File Output node adds minimal overhead — use it freely for pass debugging
+6. Mix node: up to 2x faster in 5.1 for alpha-aware blending operations
 
 ## Node Reference
 
@@ -167,6 +179,7 @@ Key categories to search:
 - Keying/matte: grep for "Key" or "Matte"
 - Render passes: grep for "Render Layers" or "pass"
 - Output: grep for "File Output" or "Composite"
+- Blender 5.1 changes: grep for "5.1" or "Strip Info" or "SDF"
 
 ## Python API Reference
 

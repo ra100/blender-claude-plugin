@@ -1,6 +1,6 @@
 ---
 name: blender-scene-rendering
-description: Blender 5.x scene setup, render engines (Cycles/EEVEE), output formats, import/export (FBX/glTF/OBJ/USD/Alembic), linking/appending, color management (AgX/Filmic), view layers, viewport config, and world/environment setup via Python (bpy).
+description: Blender 5.x scene setup, render engines (Cycles/EEVEE), output formats, import/export (FBX/glTF/OBJ/USD/Alembic), linking/appending, color management (AgX/Filmic), view layers, viewport config, and world/environment setup via Python (bpy). Includes 5.1 changes (AVIF, HTJ2K, OpenColorIO 2.5, Light Path in World).
 ---
 
 # Blender Scene & Rendering Expert
@@ -118,7 +118,8 @@ render = bpy.context.scene.render
 render.filepath = "//output/render_"  # // = relative to .blend file
 
 # Image format
-render.image_settings.file_format = 'PNG'  # PNG, JPEG, OPEN_EXR, OPEN_EXR_MULTILAYER, TIFF, BMP, HDR, FFMPEG
+# Image format
+render.image_settings.file_format = 'PNG'  # PNG, JPEG, OPEN_EXR, OPEN_EXR_MULTILAYER, TIFF, BMP, HDR, FFMPEG, AVIF (5.1)
 render.image_settings.color_mode = 'RGBA'  # BW, RGB, RGBA
 render.image_settings.color_depth = '16'   # 8, 16 (PNG/TIFF), 16/32 (EXR)
 render.image_settings.compression = 15     # PNG compression 0-100
@@ -135,6 +136,19 @@ render.ffmpeg.codec = 'H264'          # H264, MPEG4, WEBM, PNG, HUFFYUV, DNXHD, 
 render.ffmpeg.constant_rate_factor = 'MEDIUM'  # NONE, LOSSLESS, PERC_LOSSLESS, HIGH, MEDIUM, LOW, LOWEST
 render.ffmpeg.audio_codec = 'AAC'     # NONE, AAC, AC3, FLAC, MP2, MP3, OPUS, PCM, VORBIS
 ```
+
+### OpenEXR HTJ2K (New in 5.1)
+1. New EXR codec: `render.image_settings.exr_codec = 'HTJ2K'`
+2. High-throughput JPEG 2000 compression for EXR files
+3. Better compression ratios than DWAA/DWAB for multi-layer EXR output
+
+### Video Custom CRF (5.1)
+1. FFmpeg `constant_rate_factor` now supports integer values for finer control
+2. Example: `render.ffmpeg.constant_rate_factor = 'HIGH'` or set numeric CRF directly
+
+# AVIF format (new in 5.1)
+render.image_settings.file_format = 'AVIF'
+render.image_settings.avif_compression = 50  # Quality 0-100
 
 ## Sampling & Denoising
 
@@ -602,3 +616,22 @@ bpy.ops.render.render(animation=True)  # Renders full frame range
 
 - `references/python_api.md` — Complete Python API patterns for scene/render/I/O operations
 - `references/settings_reference.md` — All render engine settings, output formats, color management options, import/export format options
+
+## Blender 5.1 Changes
+
+### OpenColorIO 2.5
+1. Blender 5.1 ships with OpenColorIO 2.5
+2. Improved color space handling and display transforms
+3. Better accuracy for AgX and other view transforms
+
+### Cycles Performance
+1. Significant rendering speedups for complex scenes
+2. Improved adaptive sampling convergence
+
+### EEVEE Performance
+1. Reduced memory usage for screen-space effects
+2. Faster ray tracing evaluation
+
+### Light Path in World Nodes
+1. Light Path node is now available in World node trees (not just materials)
+2. Enables per-light-type effects in environment materials

@@ -1,6 +1,6 @@
 ---
 name: blender-geometry-nodes
-description: Blender 5.x geometry nodes — procedural modeling, scattering, mesh/curve/volume ops, simulation zones, repeat zones, and scripting node trees via Python (bpy).
+description: Blender 5.x geometry nodes — procedural modeling, scattering, mesh/curve/volume ops, simulation zones, repeat zones, Bone Info, Font socket, UV nodes, volume grid nodes, and scripting node trees via Python (bpy). Includes 5.0 and 5.1 changes.
 ---
 
 # Blender Geometry Nodes Expert
@@ -110,10 +110,47 @@ NodeSocketRotation, NodeSocketMatrix, NodeSocketMenu
 2. Processes each element (point, face, spline, instance) independently
 3. New in Blender 5.0
 
-### Bundle System (Blender 5.0)
+### Bundle System (Blender 5.0+)
 1. Combine Bundle to group multiple data streams into one connection
 2. Separate Bundle or Get Bundle Item to extract data
 3. Useful for passing complex data through a single socket
+
+### Get/Store Bundle Item (Blender 5.1)
+1. **Get Bundle Item** retrieves a specific item by index from a bundle — new in 5.1
+2. **Store Bundle Item** stores a value into a specific bundle slot — new in 5.1
+3. Enables more flexible bundle manipulation without separate/combine
+
+### Bone Info Node (Blender 5.1)
+1. **Bone Info** node reads bone transforms from an armature object
+2. Outputs: **Pose**, **Local Pose**, **Transform Pose**, **Rest Pose**, **Rest Length**
+3. Accepts an armature object and bone name as inputs
+4. Enables rig-driven node setups and armature deformation in geo nodes
+5. **Caution**: Watch for dependency cycles if the node reads a bone while another bone in the same armature depends on the modified object
+
+### String to Curves (Blender 5.1)
+1. Every input is now an adjustable **field**, including **Font** (new socket type in 5.1)
+2. New **Word** output provides per-word control for motion graphics
+3. Supports per-character and per-word customization
+
+### Volume Grid Nodes (Blender 5.1)
+1. **Cube Grid Topology** — new primitive for structured grids
+2. **Clip Grid** — deactivate voxels outside a bounding box
+3. **Grid Mean** / **Grid Median** — statistical operations on grid data
+4. **Grid to Points** — convert grid voxels to point cloud
+5. **Grid Dilate & Erode** — morphological operations on grids
+6. Improved **Set Grid Background** — set background value for grids
+
+### UV Nodes (Blender 5.1)
+1. **UV Unwrap** now supports **Minimum Stretch** (SLIM algorithm) and "No Flip" setting
+2. **Pack UV Islands** now has inputs for custom pack region
+
+### Matrix SVD Node (Blender 5.1)
+1. **Matrix SVD** (Singular Value Decomposition) decomposes a matrix into U, S, V components
+2. Useful for analyzing transformations and building custom constraint systems
+
+### Font Socket (Blender 5.1)
+1. New socket type `NodeSocketFont` for font data
+2. Used by String to Curves node and other text-related nodes
 
 ## Debugging & Optimization
 
@@ -138,6 +175,8 @@ Common causes of slow geometry node trees, in order of impact:
 - **Frame rate overlay**: Enable the FPS overlay (Viewport Overlays) to monitor performance in real-time
 - **Node timings**: Enable node timings in the overlay to see which nodes consume the most time
 - **Simplify scene**: Use Scene Properties > Simplify to reduce subdivision levels and particle counts during development
+- **Search node warnings**: Ctrl+F in the node editor to search for warnings (new in 5.1)
+- **Node Tools**: Node tools are now registered as operators, enabling programmatic access (new in 5.1)
 
 ### Common Errors and Fixes
 

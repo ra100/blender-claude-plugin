@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## What This Is
 
-A skill plugin containing 8 expert skills for Blender 5.x Python scripting. This is a content-only repo — no build system, no tests, no code to run. All files are Markdown and JSON.
+A skill plugin containing 8 expert skills for Blender 5.x Python scripting (targeting 5.0 and 5.1). This is a content-only repo — no build system, no tests, no code to run. All files are Markdown and JSON.
 
 ## Architecture
 
@@ -44,7 +44,7 @@ The `description` field drives skill activation. It must include concrete trigge
 
 ## Editing Guidelines
 
-- All API content targets **Blender 5.x** (Python API via `bpy`). Mark any version-specific features (e.g., "new in 5.0").
+- All API content targets **Blender 5.x** (Python API via `bpy`). Mark any version-specific features (e.g., "new in 5.0", "new in 5.1").
 - Node/modifier/constraint type strings must be exact (e.g., `GeometryNodeMeshCube`, `CompositorNodeDenoise`, `'INVERSE_KINEMATICS'`). Incorrect type strings break scripts silently.
 - Reference tables must include the Python type string column — this is the primary lookup value.
 - Code examples should be complete and runnable (imports, object selection, mode switching).
